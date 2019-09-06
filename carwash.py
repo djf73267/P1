@@ -120,7 +120,6 @@ def test_run():
 
    }
     df = pd.DataFrame(data, columns=['Length','Time'] )
-    df = df.cumsum()
     df.set_index("Time",drop=True,inplace=True)
     df.plot()
     axes = plt.gca()
