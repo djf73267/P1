@@ -51,8 +51,6 @@ for i in range(len(sys.argv)):
 
 
 
-
-
 class Carwash(object):
     """A carwash has a limited number of machines (``NUM_MACHINES``) to
     clean cars in parallel.
@@ -111,8 +109,21 @@ def setup(env, num_machines, washtime, t_inter):
 
 def test_run():
    
-    thislist = [4,5,6]
-    thislist2 = [0,T_INTER, T_INTER * 2]
+    sum = 4
+    thislist = []
+    for i in range(0, SIM_TIME):
+        if i % 5:
+            sum-=1
+        if i % 7: 
+            sum+=1
+
+        thislist.append(sum)    
+
+    thislist2 = []
+    for i in range(len(thislist)):
+       thislist2.append(i)
+
+
     data = {
         'Length': thislist,
         'Time':thislist2
