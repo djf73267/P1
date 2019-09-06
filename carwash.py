@@ -108,19 +108,27 @@ def setup(env, num_machines, washtime, t_inter):
         yield env.timeout(random.randint(t_inter - 2, t_inter + 2))
         i += 1
         env.process(car(env, 'Car %d' % i, carwash))
-"""
+
 def test_run():
    
-    thislist = []
-    plt.plot(thislist,[5,6,7] )
+    thislist = [4,5,6]
+    thislist2 = [0,T_INTER, T_INTER * 2]
+    data = {
+        'Length': thislist,
+        'Time':thislist2
+       
+
+   }
+    df = pd.DataFrame(data, columns=['Length','Time'] )
+    df = df.cumsum()
+    df.set_index("Time",drop=True,inplace=True)
+    df.plot()
     axes = plt.gca()
     axes.set_xlim([0,SIM_TIME])
     plt.show()
 
-    df = df.cumsum()
-    df.plot()
-    plt.show()
-    """
+
+    
 # Setup and start the simulation
 print('Carwash')
 #print('Check out http://youtu.be/fXXmeP9TvBg while simulating ... ;-)')
