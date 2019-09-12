@@ -109,12 +109,13 @@ def setup(env, num_machines, washtime, t_inter):
 
 def test_run():
    
-    sum = 4
+    sum = 5
     thislist = []
     for i in range(0, SIM_TIME):
-        if i % 5:
+        if i % WASHTIME == 0:
             sum-=1
-        if i % 7: 
+            sum-=1
+        if i % T_INTER == 0: 
             sum+=1
 
         thislist.append(sum)    
@@ -123,12 +124,9 @@ def test_run():
     for i in range(len(thislist)):
        thislist2.append(i)
 
-
     data = {
         'Length': thislist,
         'Time':thislist2
-       
-
    }
     df = pd.DataFrame(data, columns=['Length','Time'] )
     df.set_index("Time",drop=True,inplace=True)
@@ -137,6 +135,34 @@ def test_run():
     axes.set_xlim([0,SIM_TIME])
     plt.show()
 
+    sum2 = 5
+    thislist3 = []
+    for i in range(0, SIM_TIME):
+        if i % WASHTIME == 0:
+           
+           # if i % 2 == 1
+
+            sum2-=4
+           
+        if i % T_INTER == 0: 
+            sum2+=5
+
+        thislist3.append(sum2)    
+
+    thislist4 = []
+    for i in range(len(thislist3)):
+       thislist4.append(i)
+
+    data2 = {
+        'Wait Time': thislist3,
+        'Time':thislist4
+   }
+    df2 = pd.DataFrame(data2, columns=['Wait Time','Time'] )
+    df2.set_index("Time",drop=True,inplace=True)
+    df2.plot()
+    axes2 = plt.gca()
+    axes2.set_xlim([0,SIM_TIME])
+    plt.show()
 
     
 # Setup and start the simulation
